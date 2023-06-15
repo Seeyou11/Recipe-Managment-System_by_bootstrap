@@ -16,7 +16,9 @@ class SessionsController < ApplicationController
 
     def destroy
           session[:user_id] = nil
-          flash.now[:notice] = "logged out"
-          redirect_to root_path
+          respond_to do |format|
+            format.html { redirect_to root_path, notice: "logged out." }
+            format.json { head :no_content }
+          end
     end
 end

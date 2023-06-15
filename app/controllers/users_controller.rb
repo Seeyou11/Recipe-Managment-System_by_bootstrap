@@ -3,10 +3,9 @@ class UsersController < ApplicationController
     # before_action :require_user, except: %i[ show index ]
     before_action :require_same_user, only: %i[ edit update destroy ]
 
-
     def new
         @user = User.new
-        @article = Article.new
+        # @article = Article.new
     end
     
     def index

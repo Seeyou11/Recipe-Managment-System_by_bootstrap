@@ -9,13 +9,13 @@
       <div class="card-header"> 
          <% if article.user %>
           <strong>By <%= link_to article.user.username , user_path(article.user) %></strong>
-          <% if article.categories.any? %>
-          <%# So what this does is it tells Rales that, hey, go through each of the categories that this article is associated with  And display a partial for each of those categories.%>
-            <div class="mt-2"> <%= render article.categories %></div> 
-          <% end %>
-        <% else %>
-          <strong>No author</strong>
-        <% end %>
+            <% if article.categories.any? %>
+            <%# So what this does is it tells Rails that, hey, go through each of the categories that this article is associated with  And display a partial for each of those categories.%>
+              <div class="mt-2"> <%= render article.categories %></div> 
+            <% end %>
+          <% else %>
+            <strong>No author</strong>
+         <% end %>
       </div>
       <div class="card-body">
         <h5 class="card-title"><%= article.title %></h5>

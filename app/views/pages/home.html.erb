@@ -1,4 +1,13 @@
-<div class="container image d-flex justify-content-center align-items-center vh-100">
+<% if notice.present? %>
+  <div class="container">
+    <div class="alert alert-success alert-dismissible fade show mt-3 mb-0" role="alert">
+      <p class="text-success" style="margin-bottom: 0;"><%= notice %></p>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  </div>
+<% end %>
+
+<div class="container d-flex justify-content-center align-items-center vh-100">
   <div class="jumbotron text-center">
     <h1 class="display-4">Alpha Blog!</h1>
     <p class="lead">Welcome to Alpha Blog! This blog features a collection of articles and posts on various topics.</p>

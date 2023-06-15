@@ -1,5 +1,10 @@
-<div class="container">
-<p style="color: green"><%= notice %></p>
-</div>
+<% if notice.present? %>
+  <div class="container">
+    <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
+      <p class="text-success" style="margin-bottom: 0;"><%= notice %></p>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  </div>
+<% end %>
 
-<%= render @article %>
+<%= render "article", article: @article %>
