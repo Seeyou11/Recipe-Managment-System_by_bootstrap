@@ -1,0 +1,18 @@
+<div class="container mt-5">
+  <%= form_with(model: @category, class: "card w-50 mx-auto") do |form| %>
+    <div class="card-body shadow rounded">
+      <%= render 'shared/errors', obj: @category %>
+      <div class="mb-3">
+        <%= form.label :name, "Category name", class: "form-label" %>
+        <%= form.text_field :name, class: "form-control" %>
+      </div>
+      <div class="text-center">
+        <%= form.submit @category.id.present? ? "Update" : "Save", class: "btn btn-primary" %>
+      </div>
+    </div>
+  <% end %>
+  
+  <div class="mx-auto text-center mt-3">
+    <%= link_to 'Cancel and return to category listing' , categories_path %>
+  </div>
+</div>

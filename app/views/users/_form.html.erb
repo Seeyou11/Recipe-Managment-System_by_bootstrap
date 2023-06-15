@@ -1,0 +1,28 @@
+<div class="mt-4 ">
+  <%= form_with(model: @user, class: "card w-50 mx-auto") do |form| %>
+    <div class="card-body shadow rounded">
+      <%= render 'shared/errors', obj: @user %>
+      <div class="mb-3">
+        <%= form.label :username, class: "form-label" %>
+        <%= form.text_field :username, class: "form-control " %>
+      </div>
+      <div class="mb-3">
+        <%= form.label :email, class: "form-label" %>
+        <%= form.email_field :email, class: "form-control " %>
+      </div>
+      <div class="mb-3">
+        <%= form.label :password, class: "form-label" %>
+        <%= form.password_field :password, class: "form-control " %>
+      </div>
+      <div class="text-center">
+        <%= form.submit user.id.present? ? "Update account" : "Sign up", class: "btn btn-primary" %>
+      </div>
+    </div> 
+    
+  <% end %>
+
+    <div class="mx-auto text-center mt-3">
+    <%= link_to 'Cancel and return to User listing' , users_path %>
+    </div>
+
+</div>
