@@ -15,6 +15,8 @@
  */
 
  @import "bootstrap";
+ @import "font-awesome";
+
 
  .navbar
  {
@@ -80,9 +82,19 @@
     margin-left: 1em; }
 
   .custom-card-width {
-  max-width: 500px; /* Adjust the width value to your preference */
-  margin: 0 auto; /* Centers the card horizontally */
-  
-
-
+  max-width: 500px;
+  margin: 0 auto; 
 }
+
+.link-no-underline {
+  text-decoration: none;
+} 
+
+  .category-name {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    text-decoration: underline;
+  }
+
+

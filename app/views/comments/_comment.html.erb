@@ -1,0 +1,6 @@
+<% @recipe.comments.each do |comment| %>
+  <div class="comment">
+    <p><%= comment.content %></p>
+    <p class="comment-details">Posted by <%= comment.user.name %> on <%= comment.created_at.strftime('%B %d, %Y') %></p>
+  </div>
+<% end %>

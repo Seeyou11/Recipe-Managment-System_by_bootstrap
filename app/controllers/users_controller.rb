@@ -5,18 +5,19 @@ class UsersController < ApplicationController
 
     def new
         @user = User.new
-        # @article = Article.new
+        # @recipes = recipes.new
     end
     
     def index
-        @users =  User.paginate(page: params[:page], per_page: 5)
+        @users =  User.paginate(page: params[:page], per_page: 6)
     end
 
     def edit
     end
 
     def show
-        @articles = @user.articles.paginate(page: params[:page], per_page: 5)
+        # @recipess = @user.recipess.paginate(page: params[:page], per_page: 6)
+        @recipes = @user.recipes.paginate(page: params[:page], per_page: 6)
     end
 
     def create
@@ -24,11 +25,11 @@ class UsersController < ApplicationController
         respond_to do |format|
             if @user.save
                 session[:user_id] = @user.id
-                format.html { redirect_to articles_url, notice: "Welcome #{@user.username}, you have successfully signup." }
-                format.json { render :show, status: :created, location: @article }
+                format.html { redirect_to recipes_url, notice: "Welcome #{@user.username}, you have successfully signup." }
+                format.json { render :show, status: :created, location: @recipes }
             else
                 format.html { render :new, status: :unprocessable_entity }
-                format.json { render json: @article.errors, status: :unprocessable_entity }
+                format.json { render json: @recipes.errors, status: :unprocessable_entity }
             end
         end
     end 
@@ -36,11 +37,11 @@ class UsersController < ApplicationController
     def update
         respond_to do |format|
             if @user.update(user_params)
-                format.html { redirect_to users_url, notice: "Welcome #{@user.username}, you have successfully updated your account." }
-                format.json { render :user, status: :created, location: @article }
+                format.html { redirect_to user_url(@user), notice: "Welcome #{@user.username}, you have successfully updated your account." }
+                format.json { render :user, status: :created, location: @recipes }
             else
                 format.html { render :new, status: :unprocessable_entity }
-                format.json { render json: @article.errors, notice: "Welcome #{@user.username}, you have successfully updated your account." }
+                format.json { render json: @recipes.errors, notice: "Welcome #{@user.username}, you have successfully updated your account." }
             end
         end
     end
@@ -49,7 +50,7 @@ class UsersController < ApplicationController
       @user.destroy
       session[:user_id] = nil if @user == current_user
       respond_to do |format|
-        format.html { redirect_to articles_url, notice: "Your profile  was successfully destroyed." }
+        format.html { redirect_to recipes_url, notice: "Your profile  was successfully destroyed." }
         format.json { head :no_content }
       end
   end

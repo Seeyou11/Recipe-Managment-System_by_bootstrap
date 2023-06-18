@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="card text-center shadow mb-4 bg-white rounded custom-card-width mt-5">
+    <div class="card-header">
+      <% if @recipe %>
+        <strong>By <%= link_to @recipe.user.username, user_path(@recipe.user) %></strong>
+        <%= link_to gravatar_for(@recipe.user), user_path(@recipe.user) %>
+        <% if @recipe.category.present? %>
+          <div class="mt-2"><%= render @recipe.category %></div>
+        <% end %>
+      <% else %>
+        <strong>No author</strong>
+      <% end %>
+    </div>
+
+
+    <div class="card-footer text-muted">
+      <% if logged_in? %>
+        <% rating = recipe.ratings.find_by(user_id: current_user.id) %>
+        <% if rating %>
+          <%= form_with(model: rating, method: :delete, local: true, class: "mb-3") do |form| %>
+            <%= form.hidden_field :recipe_id, value: recipe.id %>
+            <%= form.submit '', type: "submit", class: "btn btn-danger text-white", value: "-" do %>
+              <i class="<%= rating.persisted? ? 'fas' : 'far' %> fa-heart"></i>
+            <% end %>
+          <% end %>
+        <% else %>
+          <%= form_with(model: [@recipe, Rating.new], url: ratings_path, local: true, class: "mb-3") do |form| %>
+            <%= form.hidden_field :recipe_id, value: recipe.id %>
+            <%= form.submit '', type: "submit", class: "btn btn-primary text-white", value: "+" do %>
+              <i class="<%= rating.persisted? ? 'fas' : 'far' %> fa-heart"></i>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% else %>
+        <%= form_with(model: [@recipe, Rating.new], url: ratings_path, local: true, class: "mb-3") do |form| %>
+          <%= form.hidden_field :recipe_id, value: recipe.id %>
+          <%= form.submit '', class: "btn btn-primary text-white" do %>
+            <i class="far fa-heart"></i>
+          <% end %>
+        <% end %>
+      <% end %>
+      <p>Rating: <i class="fas fa-heart"></i> <%= recipe.ratings.count %></p>
+    </div>
+  </div>
+</div>

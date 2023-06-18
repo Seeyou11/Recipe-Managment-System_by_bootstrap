@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  resources :articles
+  resources :comments
+  resources :ratings
+  resources :controllers
+  resources :recipes
   root 'pages#home'
   get 'signup', to: 'users#new'
   resources :users, except: [:new]
