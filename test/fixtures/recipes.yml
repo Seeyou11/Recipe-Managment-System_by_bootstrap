@@ -4,8 +4,14 @@
 # model remove the "{}" from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
-# column: value
-#
-two: {}
-# column: value
+# fixtures/recipes.yml
+# fixtures/recipes.yml
+# fixtures/recipes.yml
+recipe_one:
+  title: Snack
+  description: description of snack
+  preparation_steps: test test test test
+  user_id: 1
+  category_id: 1
+
+

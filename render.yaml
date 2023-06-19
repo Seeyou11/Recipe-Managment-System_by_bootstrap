@@ -1,0 +1,18 @@
+databases:
+  - name: RMS
+    databaseName: rms_7sqa
+    user: rms_7sqa_user
+
+services:
+  - type: web
+    name: siyam
+    runtime: ruby
+    buildCommand: "./bin/render-build.sh"
+    startCommand: "bundle exec puma -C config/puma.rb"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: RMS
+          property: connectionString
+      - key: RAILS_MASTER_KEY
+        sync: false
